@@ -5,10 +5,6 @@ import { Data } from "../store/interfaces";
 //============STYLE=================
 const styleObj = css`
   :host {
-    display: block;
-    width: 200px;
-    height: 100px;
-    background-color: var(--background-color, white);
   }
 `;
 
@@ -27,6 +23,7 @@ export default class BaseWebComponent extends HTMLElement {
   private root: ShadowRoot;
   private firstRender: boolean;
   private pElement: HTMLParagraphElement | null;
+  private linkElement: HTMLLinkElement | null;
   //========================================================================
   constructor() {
     super();
@@ -35,6 +32,7 @@ export default class BaseWebComponent extends HTMLElement {
     this.firstRender = true;
     //HTML ELEMENTS INITIALIZATION
     this.pElement = null;
+    this.linkElement = null;
     //BINDING FUNCTIONS
     this.handleStateChange_data = this.handleStateChange_data.bind(this);
   }
@@ -43,7 +41,7 @@ export default class BaseWebComponent extends HTMLElement {
   //ATTRIBUTES
   static get observedAttributes() {
     //list of allowed attributes
-    return ["bgcolor"];
+    return ["bgcolor", "globalstyles"];
   }
 
   get bgcolor(): string | null {
@@ -60,6 +58,14 @@ export default class BaseWebComponent extends HTMLElement {
   ) {
     if (attrName.toLowerCase() === "bgcolor" && oldValue !== newValue) {
       this.style.setProperty("--background-color", newValue);
+    }
+    if (attrName.toLowerCase() === "globalstyles") {
+      if (this.linkElement === null) {
+        this.linkElement = document.createElement("link");
+        this.linkElement.rel = "stylesheet";
+        this.linkElement.href = "css/style.css";
+        this.root.appendChild(this.linkElement);
+      }
     }
   }
 
@@ -83,7 +89,7 @@ export default class BaseWebComponent extends HTMLElement {
       this.pElement = this.root.querySelector("p");
       this.firstRender = false;
     } else {
-      this.pElement!.textContent = data.name || "name not set";
+      this.pElement!.textContent = data.name || "name is not set";
     }
   }
 

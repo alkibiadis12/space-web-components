@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES6", // Target ECMAScript 6 (modern browsers)
+    "module": "ES6", // Use ES6 modules for frontend
+    "moduleResolution": "node", // Resolve modules as Node.js does
+    "esModuleInterop": true, // Enable interop between CommonJS and ES modules
+    "skipLibCheck": true, // Skip type checks on declaration files
+    "strict": true, // Enable all strict type checking options
+    "forceConsistentCasingInFileNames": true, // Enforce consistent file casing
+    "allowSyntheticDefaultImports": true, // Allow default imports for modules without default exports
+    "resolveJsonModule": true, // Allow importing .json files
+    "outDir": "./public/js", // (Optional) Specify output directory for TypeScript files
+    "sourceMap": true // Generate source maps for easier debugging
+  },
+  "include": [
+    "src/**/*.ts" // Include all TypeScript files in the 'src' folder
+  ],
+  "exclude": [
+    "node_modules", // Exclude 'node_modules'
+    "public" // Exclude 'public' folder (as it contains bundled output)
+  ]
+}
