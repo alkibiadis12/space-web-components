@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES6", // Target ECMAScript 6 (modern browsers)
-    "module": "ES6", // Use ES6 modules for frontend
+    "module": "ES2020", // Use ES6 modules for frontend
     "moduleResolution": "node", // Resolve modules as Node.js does
     "esModuleInterop": true, // Enable interop between CommonJS and ES modules
     "skipLibCheck": true, // Skip type checks on declaration files

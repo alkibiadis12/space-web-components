@@ -1,5 +1,3 @@
 import "./pages/Router";
-// import "./components/BaseWebComponent";
-import "./components/header";
+import "./components/BaseWebComponent";
 import "./components/Link";
-import "./globalEvents";

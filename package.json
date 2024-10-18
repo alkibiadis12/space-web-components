@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "concurrently \"npm run esbuild-watch\" \"npm run serve\"",
     "esbuild-watch": "esbuild ./src/client/index.ts --bundle --outfile=./public/js/bundle.js --watch --sourcemap",
-    "serve": "browser-sync start --server public --files \"public/index.html, public/js/bundle.js, public/css/style.css\" --no-ui --listen localhost ",
+    "serve": "node browsersync-config.js",
     "build": "tsc && esbuild ./src/client/index.ts --bundle --outfile=./public/js/bundle.js --minify --sourcemap"
   },
   "author": "",
@@ -17,6 +17,7 @@
     "@typescript-eslint/parser": "^8.9.0",
     "browser-sync": "^3.0.3",
     "concurrently": "^9.0.1",
+    "connect-history-api-fallback": "^2.0.0",
     "esbuild": "0.24.0",
     "esbuild-plugin-alias": "^0.2.1",
     "eslint": "^9.12.0",

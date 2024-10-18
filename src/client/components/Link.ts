@@ -1,3 +1,5 @@
+import store from "../store/Store";
+
 class Link extends HTMLElement {
   private root: ShadowRoot;
   private firstRender: boolean;
@@ -41,12 +43,10 @@ class Link extends HTMLElement {
       if (!this.styleEl) this.styleEl = this.root.querySelector("style");
       this.aEl!.addEventListener("click", (e) => this.handleClick(e));
 
-      window.addEventListener("url-changed", (e: Event) => {
-        const customEvent = e as CustomEvent;
-        this.styleEl!.textContent = `a {
-          cursor: ${customEvent.detail === this.href ? "not-allowed" : "pointer"}}
-        `;
-      });
+      //TODO use it to change active, non active style
+      // window.addEventListener("url-changed", (e: Event) => {
+      //   const customEvent = e as CustomEvent;
+      // });
     }
   }
   //===================================================
@@ -54,10 +54,7 @@ class Link extends HTMLElement {
     const template = document.createElement("template");
     const anchor = document.createElement("a");
     const style = document.createElement("style");
-    style.textContent = `
-       a {
-        cursor: ${window.location.pathname === this.href ? "not-allowed" : "pointer"}
-       }`;
+    // style.textContent = ``
     anchor.textContent = this.textContent || "Link";
     if (this.href) anchor.href = this.href;
     template.content.appendChild(style);
@@ -67,34 +64,8 @@ class Link extends HTMLElement {
   }
 
   //===================================================
-  //SEND CUSTOM EVENT WHEN URL CHANGES
-  dispatchURLChangeEvent(url_pathname: string) {
-    const event = new CustomEvent("url-changed", {
-      detail: url_pathname,
-    });
-    window.dispatchEvent(event);
-  }
-  //===================================================
-
   handleClick(e: Event) {
-    e.preventDefault();
-    const target = e.target as HTMLAnchorElement;
-
-    if (target && target.href) {
-      const url = new URL(target.href);
-
-      // Ensure that the link is internal (within the same origin)
-      if (url.origin === window.location.origin) {
-        e.preventDefault(); // Prevent the browser from performing the default navigation
-
-        // Use pushState to change the URL without reloading the page
-
-        if (window.location.pathname !== url.pathname) {
-          history.pushState({}, "", url.pathname);
-          this.dispatchURLChangeEvent(url.pathname);
-        }
-      }
-    }
+    store.updateURL(e);
   }
 
   //===================================================
