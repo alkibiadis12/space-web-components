@@ -2,15 +2,8 @@
 
 export default class About extends HTMLElement {
   //========================================================================
-  private root: ShadowRoot;
-
-  //========================================================================
   constructor() {
     super();
-    this.root = this.attachShadow({ mode: "closed" });
-    //SETTING LOCAL VAR INITIALIZATION
-
-    //HTML ELEMENTS INITIALIZATION
   }
   //========================================================================
   connectedCallback() {
@@ -22,11 +15,10 @@ export default class About extends HTMLElement {
 
   //========================================================================
   render() {
+    this.innerHTML = "";
     const template = document.createElement("template");
-    const h1Element = document.createElement("h1");
-    h1Element.textContent = "About Page";
-    template.content.appendChild(h1Element);
-    this.root.append(template.content.cloneNode(true));
+    template.innerHTML = `<h1 class='text-white text-lg'>ABOUT PAGE</h1>`;
+    this.append(template.content.cloneNode(true));
   }
 }
 //END OF COMPONENT

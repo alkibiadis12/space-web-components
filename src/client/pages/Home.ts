@@ -2,15 +2,9 @@
 
 export default class Home extends HTMLElement {
   //========================================================================
-  private root: ShadowRoot;
 
-  //========================================================================
   constructor() {
     super();
-    this.root = this.attachShadow({ mode: "closed" });
-    //SETTING LOCAL VAR INITIALIZATION
-
-    //HTML ELEMENTS INITIALIZATION
   }
   //========================================================================
   connectedCallback() {
@@ -22,11 +16,11 @@ export default class Home extends HTMLElement {
 
   //========================================================================
   render() {
+    this.innerHTML = "";
     const template = document.createElement("template");
-    const h1Element = document.createElement("h1");
-    h1Element.textContent = "Home Page";
-    template.content.appendChild(h1Element);
-    this.root.append(template.content.cloneNode(true));
+    template.innerHTML = `<my-tabs></my-tabs>`;
+
+    this.append(template.content.cloneNode(true));
   }
 }
 

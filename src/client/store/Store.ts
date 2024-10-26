@@ -1,4 +1,4 @@
-import { State, Data } from "./interfaces";
+import { State } from "./interfaces";
 
 class Store {
   //==================================
@@ -12,9 +12,6 @@ class Store {
       url: {
         pathname: "/",
       },
-      data: {
-        name: "Kurapika",
-      },
     };
   }
 
@@ -24,15 +21,11 @@ class Store {
     return this.state.url;
   }
 
-  getData() {
-    return this.state.data;
-  }
-
   //==================================
   //UPDATE METHODS
   updateURL(e: Event) {
     e.preventDefault();
-    const target = e.target as HTMLAnchorElement;
+    const target = (e.target as HTMLElement).closest("a");
 
     if (target && target.href) {
       const newURL = new URL(target.href);
@@ -50,22 +43,11 @@ class Store {
     }
   }
 
-  updateData(newData: Data) {
-    this.state.data = { ...this.state.data, ...newData };
-    this._dispatchDataChangeEvent();
-  }
   //==================================
   //CUSTOM EVENTS
   _dispatchURLChangeEvent(url_pathname: string) {
     const event = new CustomEvent("url-changed", {
       detail: this.state.url.pathname,
-    });
-    window.dispatchEvent(event);
-  }
-
-  _dispatchDataChangeEvent() {
-    const event = new CustomEvent("stateChanged-data", {
-      detail: this.state.data,
     });
     window.dispatchEvent(event);
   }

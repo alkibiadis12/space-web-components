@@ -1,0 +1,7 @@
+{
+  "extends": ["plugin:tailwindcss/recommended"],
+  "plugins": ["tailwindcss"],
+  "rules": {
+    "tailwindcss/classnames-order": "warn",
+  },
+}

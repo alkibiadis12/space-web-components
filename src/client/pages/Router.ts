@@ -2,12 +2,8 @@ import("./Home");
 
 export default class Router extends HTMLElement {
   //========================================================================
-  private root: ShadowRoot;
-
-  //========================================================================
   constructor() {
     super();
-    this.root = this.attachShadow({ mode: "closed" });
     this.handleURLChange = this.handleURLChange.bind(this);
     this.handlePopState = this.handlePopState.bind(this);
   }
@@ -45,8 +41,8 @@ export default class Router extends HTMLElement {
       }
     }
 
-    if (this.root.firstChild) this.root.removeChild(this.root.firstChild);
-    this.root.append(template.content.cloneNode(true));
+    if (this.firstChild) this.removeChild(this.firstChild);
+    this.append(template.content.cloneNode(true));
   }
   //========================================================================
   //FUNCTIONS

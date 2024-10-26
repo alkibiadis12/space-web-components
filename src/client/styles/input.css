@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.explore-link {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  text-decoration: none;
+}
+
+.explore-link::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: hsl(231 77% 90% / 0.15);
+  border-radius: 50%;
+  opacity: 0;
+  transition:
+    opacity 500ms linear,
+    transform 750ms ease-in-out;
+}
+
+.explore-link:hover::after,
+.explore-link:focus::after {
+  opacity: 1;
+  transform: scale(1.5);
+}
