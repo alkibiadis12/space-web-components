@@ -1,7 +1,18 @@
+import store from "./store/Store";
+
+//PRELOAD DATA
+(async () => {
+  await store.setPageData();
+})();
+
+//ROUTER
+import "./pages/Router";
+//COMPONENTS
 import "./components/Logo";
 import "./components/Header";
-import "./components/HeaderMobile";
 import "./components/NumberedTitleLink";
-import "./pages/Router";
 import "./components/ExploreLink";
-import "./components/Tabs";
+import "./components/DestinationTabs";
+import "./components/DotIndicators";
+import "./components/NumberIndicators";
+import "./components/LoadingSpinner";

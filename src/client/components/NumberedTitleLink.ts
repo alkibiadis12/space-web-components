@@ -1,10 +1,6 @@
 import Link from "./base/Link";
 
 class NumberedTitleLink extends Link {
-  constructor() {
-    super();
-  }
-
   get number(): string | null {
     return this.getAttribute("number");
   }

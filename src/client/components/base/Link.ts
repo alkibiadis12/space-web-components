@@ -27,7 +27,6 @@ export default class Link extends HTMLElement {
     }
   }
 
-  // Method to be overridden by child components
   render() {
     this.innerHTML = `
       <a href="${this.href ? this.href : "#"}"></a>
@@ -35,7 +34,7 @@ export default class Link extends HTMLElement {
   }
 
   handleClick(e: Event) {
-    store.updateURL(e); // Or any common behavior across link components
+    store.updateURL(e);
   }
 
   disconnectedCallback() {
