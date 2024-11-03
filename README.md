@@ -1,7 +1,7 @@
 ﻿# space-web-components (Only devDependencies project)
 
-Technologies used
--typescript
--web components
--store with custom events
--router using histori api
+Technologies used:
+-Typescript-
+-Web components-
+-Store with custom events-
+-Router using histori api-
